@@ -1,0 +1,32 @@
+On the board 0 road(s) are blocked!
+┼─────────────────┼
+│#################│
+│#   B            │
+│# ###############│
+│# #       E     V│
+│# # ########### #│
+│# S #         # #│
+│C # # ####### # #│
+│# # # #     # # #│
+│# # # R ### # # #│
+│# # # # Z # # # #│
+│# # # #   # # # #│
+│# # # #####G# # W│
+│# # #       # # #│
+│# # #Y####### # #│
+│# #  A        # #│
+│# ############# #│
+│# X             #│
+│#################│
+┼─────────────────┼
+Enter 1. item: Enter 2. item: The path from G to Y exists.
+
+Enter 1. item: Enter 2. item: The path from Y to S exists.
+
+Enter 1. item: Enter 2. item: The path from S to V exists.
+
+Enter 1. item: Enter 2. item: The path from B to W does NOT exist.
+
+Enter 1. item: Enter 2. item: The path from Z to E does NOT exist.
+
+Enter 1. item: 

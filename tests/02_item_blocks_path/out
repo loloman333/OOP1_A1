@@ -1,0 +1,14 @@
+On the board 0 road(s) are blocked!
+┼────────┼
+│ A  ####│
+│ #  B  C│
+│##  ##  │
+│####E## │
+│D  #  # │
+│##### # │
+┼────────┼
+Enter 1. item: Enter 2. item: The path from A to E exists.
+
+Enter 1. item: Enter 2. item: The path from E to C does NOT exist.
+
+Enter 1. item: 

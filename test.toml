@@ -1,0 +1,74 @@
+# Testcase Structure:
+#    name: String, // The name of the testcase
+#    subname: Option<String>, // used for unittests later
+#    testcase_type: String, //Only IO supported now
+#    description: Option<String>, // optional description
+#    args: Option<String>, // command line arguments
+#    cflags: Option<String>, // compile flags
+#    tags: Option<Tags>, // tags for unit tests
+#    in_file: Option<String>, // stdin file
+#    exp_file: Option<String>, // stdout file
+#    in_string: Option<String>, // stdin string (in_file has higher priority)
+#    exp_string: Option<String>, // stdout string (out_file has higher priority)
+#    exp_retvar: Option<i32>, // optional expected status code
+#    timeout: Option<i32>, // timeout in seconds .. default is 5 sec
+#    env_vars:Option<String>, // optional environment parameters RAND_SEED=123,foo=bar
+
+[project_definition]
+project_name = "a1"
+makefile_path = "."
+maketarget = "all"
+
+[[testcases]]
+name = "[pub] Simple Path"
+args = ["tests/01_simple_path/config_01.txt"]
+testcase_type = "IO"
+description = "Simple path between two items without any blocking."
+exp_file = "tests/01_simple_path/out"
+in_file = "tests/01_simple_path/in"
+exp_retvar = 0
+
+[[testcases]]
+name = "[pub] Item Blocks Path"
+args = ["tests/02_item_blocks_path/config_02.txt"]
+testcase_type = "IO"
+description = "One item is blocking the connection between other items."
+exp_file = "tests/02_item_blocks_path/out"
+in_file = "tests/02_item_blocks_path/in"
+exp_retvar = 0
+
+[[testcases]]
+name = "[pub] Blocked Roads"
+args = ["tests/03_blocked_roads/config_03.txt"]
+testcase_type = "IO"
+description = "Several roads are blocking paths between items."
+exp_file = "tests/03_blocked_roads/out"
+in_file = "tests/03_blocked_roads/in"
+exp_retvar = 0
+
+[[testcases]]
+name = "[pub] Spiral Labyrinth"
+args = ["tests/04_spiral_labyrinth/config_04.txt"]
+testcase_type = "IO"
+description = "Spiral labyritnh without blocked roads."
+exp_file = "tests/04_spiral_labyrinth/out"
+in_file = "tests/04_spiral_labyrinth/in"
+exp_retvar = 0
+
+[[testcases]]
+name = "[pub] City Center"
+args = ["tests/05_city_center/config_05.txt"]
+testcase_type = "IO"
+description = "Pathfinding in the center of Graz with several construction sites blocking roads. J...Jakominiplatz"
+exp_file = "tests/05_city_center/out"
+in_file = "tests/05_city_center/in"
+exp_retvar = 0
+
+[[testcases]]
+name = "[pub] Among Us Maze"
+args = ["tests/06_among_us_maze/config_06.txt"]
+testcase_type = "IO"
+description = "Board in the style of an Among Us Maze with a lot of blocked roads."
+exp_file = "tests/06_among_us_maze/out"
+in_file = "tests/06_among_us_maze/in"
+exp_retvar = 0

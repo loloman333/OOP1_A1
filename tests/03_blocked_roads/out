@@ -1,0 +1,15 @@
+On the board 4 road(s) are blocked!
+┼──────┼
+│ %###R│
+│ F% # │
+│ %# ##│
+│ #G#%#│
+│S   H#│
+┼──────┼
+Enter 1. item: Enter 2. item: The path from S to F does NOT exist.
+
+Enter 1. item: Enter 2. item: The path from H to R exists.
+
+Enter 1. item: Enter 2. item: The path from G to F does NOT exist.
+
+Enter 1. item: 

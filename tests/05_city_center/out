@@ -1,0 +1,29 @@
+On the board 29 road(s) are blocked!
+┼────────────────────┼
+│     %###P##     ##B│
+│  %%%%   # #### ##  │
+│  #      #    ###   │
+│  # ### ##      ##  │
+│S## # ##H%%%%    #  │
+│  ###   #   %%  ##  │
+│    %   #    %   #  │
+│    %  ##% ######## │
+│  #%%%%#J###    K%  │
+│  W    ##  ###  %%  │
+│        #    ###D   │
+│       ##   %%      │
+│       F%%%%%       │
+┼────────────────────┼
+Enter 1. item: Enter 2. item: The path from D to F does NOT exist.
+
+Enter 1. item: Enter 2. item: The path from F to H exists.
+
+Enter 1. item: Enter 2. item: The path from H to S exists.
+
+Enter 1. item: Enter 2. item: The path from K to B exists.
+
+Enter 1. item: Enter 2. item: The path from S to P does NOT exist.
+
+Enter 1. item: Enter 2. item: The path from H to D does NOT exist.
+
+Enter 1. item: 

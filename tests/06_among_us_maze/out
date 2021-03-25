@@ -1,0 +1,19 @@
+On the board 34 road(s) are blocked!
+┼─────────────────────┼
+│  A         S U   N  │
+│  # % % % % # # % #  │
+│ %###%#%#######%#%#% │
+│  % # # # # # # % %  │
+│O##%#%#%#%#%#%#####% │
+│  # # % # # # % # #  │
+│ %#############%#%#% │
+│  % % % % % # % % #  │
+│          G       M  │
+┼─────────────────────┼
+Enter 1. item: Enter 2. item: The path from A to M exists.
+
+Enter 1. item: Enter 2. item: The path from O to N does NOT exist.
+
+Enter 1. item: Enter 2. item: The path from G to U does NOT exist.
+
+Enter 1. item: Enter 2. item: 
