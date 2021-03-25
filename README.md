@@ -370,7 +370,7 @@ B####%###
 
 ## Abgabe und Bewertung
 
-- Push auf das eigene Gitlab Repository auf den branch `submission`
+- Push auf das *eigene* Gitlab Repository **auf einen Branch namens `submission`**
 - **Deadline: 7.4.2021** (Achtung geändert !)
 
 #### Ausbesserung
@@ -380,6 +380,6 @@ Falls die benötigten 3 Testcases zur Deadline am 7.4.2021 noch nicht bestanden 
 #### Bewertung
 
 - Die Punkte werden anhand der bestanden Testcases vergeben. Andere Kriterien (wie z.B. Style Guide) kommen bei Assignment 1 nicht zur Anwendung. Das heißt, ein Programm, das beispielsweise 80% der Testcases besteht, bringt auch 80% der bei Assignment 1 erreichbaren Punkte.
-- Es müssen mindestens 3 der *öffentlichen* 6 Testcases bestanden werden
+- Es müssen **mindestens 3 der *öffentlichen* 6 Testcases** bestanden werden.
   - 6 Testcases werden veröffentlicht (public testcases), 6 private testcases
-
+- Im Falle von Warnings (Speicherlöchern) [Verstößen gegen Spezifikationen in diesem Dokument] werden 10 (25) [25] % der erreichten Punkte abgezogen – bitte deshalb sehr gewissenhaft arbeiten.
