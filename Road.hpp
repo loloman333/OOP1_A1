@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 // Assignment 1 - OOP1 SS2021
 //
-// Field-class TODO
+// Road-class TODO
 //
 // Author: 12007661 - Killer Lorenz
 //----------------------------------------------------------------------------------------------------------------------
@@ -11,24 +11,19 @@
 // copy and deconstructor?
 // commenting
 
-#ifndef A1_FIELD_HPP
-#define A1_FIELD_HPP
+#ifndef A1_Road_HPP
+#define A1_Road_HPP
 
-#include <stddef.h>
+#include "Field.hpp"
 
-typedef struct _Coordinates_ 
-{
-  size_t row_;
-  size_t column_;
-} Coordinates;
+#include <cstdio>
 
-class Field
+class Road : public Field
 {
   private:
 
-    int field_id_;
-    Coordinates position_;
-    static int field_id_counter;
+    bool blocked_;
+    static int number_of_blocked_roads_;
   
   public:
 
@@ -38,13 +33,12 @@ class Field
     ///
     /// @param pos
     //
-    Field(Coordinates pos);
+    Road(bool blocked, Coordinates pos);
 
-    int getFieldId();
-    Coordinates getPositon();
+    static int getNumberOfBlockedRoads();
 
-    virtual bool isBlocked() = 0; 
-    virtual void print() = 0; 
+    bool isBlocked(); 
+    void print(); 
 };
 
-#endif // A1_FIELD_HPP
+#endif // A1_Road_HPP

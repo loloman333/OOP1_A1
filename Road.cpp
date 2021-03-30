@@ -1,31 +1,50 @@
 //----------------------------------------------------------------------------------------------------------------------
 // Assignment 1 - OOP1 SS2021
 //
-// TODO
+// Road-class TODO
 //
 // Author: 12007661 - Killer Lorenz
 //----------------------------------------------------------------------------------------------------------------------
 //
 
-#include "Field.hpp"
+//TODO 
+// cout???
 
-int Field::field_id_counter{0};
+#include "Road.hpp"
+
+#include <iostream>
+
+int Road::number_of_blocked_roads_{0};
 
 //----------------------------------------------------------------------------------------------------------------------
-Field::Field(Coordinates pos):
-  position_{pos}
+Road::Road(bool blocked, Coordinates pos):
+  Field(pos),
+  blocked_{blocked}
 {
-  field_id_ = Field::field_id_counter++;
+  if (blocked){
+    Road::number_of_blocked_roads_++;
+  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-int Field::getFieldId()
+int Road::getNumberOfBlockedRoads()
 {
-  return field_id_;
+  return Road::number_of_blocked_roads_;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-Coordinates Field::getPositon()
-{
-  return position_;
+bool Road::isBlocked(){
+  return blocked_;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+void Road::print() {
+  char c;
+  if (blocked_){
+    c = '%';
+  } else {
+    c = '#';
+  }
+
+  std::cout << c;
 }
