@@ -20,6 +20,8 @@ class Item;
  * TODO begin: If you need any additional includes or forward declarations of
  * classes you can add them here.
  */
+#include <set>
+#include "Field.hpp"
 
 // TODO end
 
@@ -100,6 +102,12 @@ class Board
      * TODO begin: If you need any helper methods for the path finding, feel free
      * to declare them here.
      */
+
+    void addNeighbors(Field* current_item, std::set<Field*>& seen, std::set<Field*>& unvisited);
+    Field* chooseNextField(Item* to_item, std::set<Field*>& unvisited);
+
+    std::vector<Field*> getNeighborsOfField(Field* field);
+    bool areCoordinatesOnBoard(Coordinates& cords);
 
     // TODO end
 

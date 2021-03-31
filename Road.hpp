@@ -35,10 +35,12 @@ class Road : public Field
     //
     Road(bool blocked, Coordinates pos);
 
+    ~Road() = default;
+
     static int getNumberOfBlockedRoads();
 
-    bool isBlocked(); 
-    void print(); 
+    bool isBlocked() override; 
+    void print() override; 
 };
 
 #endif // A1_Road_HPP

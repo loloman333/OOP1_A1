@@ -39,6 +39,7 @@ class Field
     /// @param pos
     //
     Field(Coordinates pos);
+    virtual ~Field() = default;
 
     int getFieldId();
     Coordinates getPositon();

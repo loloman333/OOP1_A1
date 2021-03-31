@@ -8,7 +8,6 @@
 //
 
 #include "Board.hpp"
-#include "Field.hpp"
 #include "Road.hpp"
 #include "Item.hpp"
 #include <cstdio>
@@ -17,6 +16,7 @@
  */
 
 #include <iostream>
+
 
 // TODO end
 
@@ -90,6 +90,14 @@ void Board::deleteFields(void)
    *   so that the entire "Road" or "Item" object will be destroyed
    */
 
+  for (unsigned row_index = 0; row_index < width_; row_index++)
+  {
+    for (unsigned col_index = 0; col_index < width_; col_index++)
+    {
+      delete board_[row_index][col_index];
+    }
+  }
+
   // TODO end
 }
 
@@ -117,6 +125,30 @@ bool Board::findPath(Item* from_item, Item* to_item)
    * if you want to use subroutines, implement them directly below this method and add them to the Board.hpp
    */
 
+  // Best-First Search
+
+  // Phase 0: Preparation
+  Field* current_field = from_item;
+  std::set<Field*> seen{current_field};
+  std::set<Field*> unvisited{current_field};
+
+  while (current_field != nullptr)
+  {
+    // Quit here if current field is the to_item
+    if (current_field == to_item)
+    {
+      return true;
+    }
+
+    // Phase 1: Add neighbors
+    addNeighbors(current_field, seen, unvisited);
+
+    // Phase 2: Choose next field to explore
+    current_field = chooseNextField(to_item, unvisited);
+  }
+
+  return false;
+
   //TODO end
 }
 
@@ -125,6 +157,99 @@ bool Board::findPath(Item* from_item, Item* to_item)
  * TODO begin: If you need any helper methods for the path finding, feel free
  * to implement them here.
  */
+
+void Board::addNeighbors(Field* current_field, std::set<Field*>& seen, std::set<Field*>& unvisited)
+{
+  std::vector<Field*> neighbors = getNeighborsOfField(current_field);
+  for (Field* neighbor : neighbors)
+  {
+    if (neighbor != nullptr)
+    {
+      bool inserted = seen.insert(neighbor).second;
+      if (inserted)
+      {
+        unvisited.insert(neighbor);
+      }
+    }
+  }
+}
+
+Field* Board::chooseNextField(Item* to_item, std::set<Field*>& unvisited)
+{
+  Field* next_field = nullptr;
+  int min_distance = width_ + height_; 
+  for (Field* field : unvisited)
+  { 
+    int col_distance = abs((int)field->getPositon().column_ - (int)to_item->getPositon().column_);
+    int row_distance = abs((int)field->getPositon().row_ - (int)to_item->getPositon().row_);
+    int distance = col_distance + row_distance;
+    if (distance < min_distance)
+    {
+      min_distance = distance;
+      next_field = field;
+      
+    }
+  }
+
+  unvisited.erase(next_field);
+  return next_field;
+}
+
+//TODO: kinda ugly lul
+std::vector<Field*> Board::getNeighborsOfField(Field* field)
+{
+  Coordinates cords = field->getPositon();
+  std::vector<Field*> neighbors{};
+  
+  // Upper Neighbor
+  Coordinates neighbor_cords{cords};
+  neighbor_cords.row_--;
+  if (areCoordinatesOnBoard(neighbor_cords))
+  {
+    neighbors.push_back(board_[neighbor_cords.row_][neighbor_cords.column_]);
+  }
+
+  // Right Neighbor
+  neighbor_cords = cords;
+  neighbor_cords.column_++;
+  if (areCoordinatesOnBoard(neighbor_cords))
+  {
+    neighbors.push_back(board_[neighbor_cords.row_][neighbor_cords.column_]);
+  }
+
+  // Down Neighbor
+  neighbor_cords = cords;
+  neighbor_cords.row_++;
+  if (areCoordinatesOnBoard(neighbor_cords))
+  {
+    neighbors.push_back(board_[neighbor_cords.row_][neighbor_cords.column_]);
+  }
+
+  // Left Neighbor
+  neighbor_cords = cords;
+  neighbor_cords.column_--;
+  if (areCoordinatesOnBoard(neighbor_cords))
+  {
+    neighbors.push_back(board_[neighbor_cords.row_][neighbor_cords.column_]);
+  }
+
+  return neighbors;
+}
+
+bool Board::areCoordinatesOnBoard(Coordinates& cords)
+{
+  if (cords.column_ >= height_ || cords.column_ < 0) // TODO: remove checking for smaller (size_t is unsigned)
+  {
+    return false;
+  }
+
+  if (cords.row_ >= width_ || cords.row_ < 0)
+  {
+    return false;
+  }
+
+  return true;
+}
 
 // TODO end
 

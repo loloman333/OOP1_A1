@@ -34,10 +34,12 @@ class Item : public Field
     //
     Item(char name, Coordinates pos);
 
+    ~Item() = default;
+
     char getName();
 
-    bool isBlocked(); 
-    void print(); 
+    bool isBlocked() override; 
+    void print() override; 
 };
 
 #endif // A1_ITEM_HPP
