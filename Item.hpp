@@ -39,7 +39,7 @@ class Item : public Field
     char getName();
 
     bool isBlocked() override; 
-    void print() override; 
+    void print() override;
 };
 
 #endif // A1_ITEM_HPP

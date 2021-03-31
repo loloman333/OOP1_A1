@@ -103,7 +103,7 @@ class Board
      * to declare them here.
      */
 
-    void addNeighbors(Field* current_item, std::set<Field*>& seen, std::set<Field*>& unvisited);
+    bool addNeighbors(Field* current_field, Item* to_item, std::set<Field*>& seen, std::set<Field*>& unvisited);
     Field* chooseNextField(Item* to_item, std::set<Field*>& unvisited);
 
     std::vector<Field*> getNeighborsOfField(Field* field);

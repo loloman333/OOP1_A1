@@ -41,7 +41,7 @@ Board::~Board()
 void Board::initializeFields(char** fields)
 {
 
-  for (unsigned row_index = 0; row_index < width_; row_index++)
+  for (unsigned row_index = 0; row_index < height_; row_index++)
   {
     std::vector<Field*> column = std::vector<Field*>{};
 
@@ -90,13 +90,21 @@ void Board::deleteFields(void)
    *   so that the entire "Road" or "Item" object will be destroyed
    */
 
-  for (unsigned row_index = 0; row_index < width_; row_index++)
+  for (std::vector<Field*> row : board_)
   {
-    for (unsigned col_index = 0; col_index < width_; col_index++)
+    for (Field* field : row)
     {
-      delete board_[row_index][col_index];
+      if (field != nullptr)
+      {
+        delete field;
+      }
     }
   }
+
+  // for (Item* item : items_)
+  // {
+  //   delete item;
+  // }
 
   // TODO end
 }
@@ -134,14 +142,15 @@ bool Board::findPath(Item* from_item, Item* to_item)
 
   while (current_field != nullptr)
   {
-    // Quit here if current field is the to_item
-    if (current_field == to_item)
+
+    // Phase 1: Add neighbors
+    bool found_path = addNeighbors(current_field, to_item, seen, unvisited);
+
+    // Stop if neighbor is to_item
+    if (found_path)
     {
       return true;
     }
-
-    // Phase 1: Add neighbors
-    addNeighbors(current_field, seen, unvisited);
 
     // Phase 2: Choose next field to explore
     current_field = chooseNextField(to_item, unvisited);
@@ -158,20 +167,29 @@ bool Board::findPath(Item* from_item, Item* to_item)
  * to implement them here.
  */
 
-void Board::addNeighbors(Field* current_field, std::set<Field*>& seen, std::set<Field*>& unvisited)
+bool Board::addNeighbors(Field* current_field, Item* to_item, std::set<Field*>& seen, std::set<Field*>& unvisited)
 {
   std::vector<Field*> neighbors = getNeighborsOfField(current_field);
   for (Field* neighbor : neighbors)
   {
     if (neighbor != nullptr)
     {
-      bool inserted = seen.insert(neighbor).second;
-      if (inserted)
+      if (neighbor == to_item)
       {
-        unvisited.insert(neighbor);
-      }
-    }
+        return true;
+      } 
+      else if (!neighbor->isBlocked())
+      {
+        bool inserted = seen.insert(neighbor).second;
+        if (inserted)
+        {
+          unvisited.insert(neighbor);
+        }
+      }  
+    } 
   }
+
+  return false;
 }
 
 Field* Board::chooseNextField(Item* to_item, std::set<Field*>& unvisited)
@@ -238,12 +256,12 @@ std::vector<Field*> Board::getNeighborsOfField(Field* field)
 
 bool Board::areCoordinatesOnBoard(Coordinates& cords)
 {
-  if (cords.column_ >= height_ || cords.column_ < 0) // TODO: remove checking for smaller (size_t is unsigned)
+  if (cords.column_ >= width_ || cords.column_ < 0) // TODO: remove checking for smaller (size_t is unsigned)
   {
     return false;
   }
 
-  if (cords.row_ >= width_ || cords.row_ < 0)
+  if (cords.row_ >= height_ || cords.row_ < 0)
   {
     return false;
   }

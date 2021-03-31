@@ -45,7 +45,7 @@ class Field
     Coordinates getPositon();
 
     virtual bool isBlocked() = 0; 
-    virtual void print() = 0; 
+    virtual void print() = 0;
 };
 
 #endif // A1_FIELD_HPP

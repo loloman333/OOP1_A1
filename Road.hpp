@@ -40,7 +40,7 @@ class Road : public Field
     static int getNumberOfBlockedRoads();
 
     bool isBlocked() override; 
-    void print() override; 
+    void print() override;
 };
 
 #endif // A1_Road_HPP
