@@ -16,6 +16,8 @@
  * TODO begin: If you need any additional includes you can add them here.
  */
 
+#include <iostream>
+
 // TODO end
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -38,14 +40,43 @@ Board::~Board()
 //----------------------------------------------------------------------------------------------------------------------
 void Board::initializeFields(char** fields)
 {
-  /* 
-   * TODO begin: 
-   * - iterate over the 2D-array fields
-   * - create "Road" and "Item" objects on the heap and store them in the board_ std::vector
-   * - add items to the items_ std::vector
-   */
 
-  // TODO end
+  for (unsigned row_index = 0; row_index < width_; row_index++)
+  {
+    std::vector<Field*> column = std::vector<Field*>{};
+
+    for (unsigned col_index = 0; col_index < width_; col_index++) 
+    {
+      char field = fields[row_index][col_index];
+
+      if (field == ' ')
+      {
+        column.push_back(nullptr);
+      }
+      else
+      {
+        Coordinates cords = Coordinates{row_index, col_index};
+
+        if (field == '#')
+        { 
+          column.push_back(new Road{false, cords});
+        }
+        else if (field == '%')
+        {
+          column.push_back(new Road{true, cords});
+        }
+        else
+        {
+          //TODO check if char (name) is valid?
+          Item* item = new Item{field, cords};
+          column.push_back(item);
+          items_.push_back(item);
+        }
+      }
+
+    }
+    board_.push_back(column);
+  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------

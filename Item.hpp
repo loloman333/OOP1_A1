@@ -34,7 +34,7 @@ class Item : public Field
     //
     Item(char name, Coordinates pos);
 
-    int getName();
+    char getName();
 
     bool isBlocked(); 
     void print(); 

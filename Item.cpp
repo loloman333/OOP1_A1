@@ -21,7 +21,7 @@ Item::Item(char name, Coordinates pos):
 {}
 
 //----------------------------------------------------------------------------------------------------------------------
-int Item::getName()
+char Item::getName()
 {
   return name_;
 }
