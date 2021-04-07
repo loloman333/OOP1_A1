@@ -127,18 +127,17 @@ Item* Board::getItemByName(std::string name)
 //----------------------------------------------------------------------------------------------------------------------
 bool Board::findPath(Item* from_item, Item* to_item)
 {
-  /*
-   * TODO begin:
-   * implement your path-finding algorithm here
-   * if you want to use subroutines, implement them directly below this method and add them to the Board.hpp
-   */
-
   // Best-First Search
 
   // Phase 0: Preparation
   Field* current_field = from_item;
   std::set<Field*> seen{current_field};
   std::set<Field*> unvisited{current_field};
+
+  if (current_field == to_item)
+  {
+    return true;
+  } 
 
   while (current_field != nullptr)
   {
